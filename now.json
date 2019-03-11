@@ -1,1 +1,14 @@
-{}
+{
+  "version": 2,
+  "name": "personal-website",
+  "builds": [{ "src": "next.config.js", "use": "@now/next" }],
+  "scripts": {
+    "now-build": "next build"
+  },
+  "routes": [
+    {
+      "src": "/_next/static/(?:[^/]+/pages|chunks|runtime)/.+",
+      "headers": { "cache-control": "immutable" }
+    }
+  ]
+}
