@@ -2,7 +2,8 @@ $font-stack: "Roboto", Helvetica, sans-serif;
 
 $font-size-big:64pt;
 $font-size-medium:24pt;
-$font-size-normal:16pt;
+$font-size-normal:20pt;
+$font-size-small:16pt;
 
 
 
@@ -16,7 +17,12 @@ $primary-fg-color: rgb(160,20,40);
 $secondary-fg-color: rgb(80,40,40);
 $tertiary-fg-color: rgb(110,60,65);
 
-
+* {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */
+}
 body {
   font-family: $font-stack;
   font-size: $font-size-medium;
@@ -66,11 +72,38 @@ body {
   .Interests {
     padding-top:8px;
     color: $tertiary-fg-color;
+    font-size: $font-size-normal;
+    .interest {
+      text-decoration: none;
+      border-width: 0px;
+      border-bottom-width: 2px;
+      margin:4px;
+      padding-left:4px;
+      padding-right: 4px;
+      border-radius: 2px;
+      background-color:$primary-fg-color;
+      color: $bg-color;
+    }
+    .more-interests {
+      display: inline-block;
+      border-style: ridge;
+      border-width: 0px;
+      border-bottom-width: 1px;
+      border-color:$primary-fg-color;
+      padding:2px;
+      margin:4px;
+      margin-left: 8px;
+      cursor: pointer;
+      background: transparent;
+      color:$primary-fg-color;
+      font-size: $font-size-small;
+      font-weight: $font-weight-normal
+    }
   }
   .Welcome {
     padding-top:16px;
     color: $tertiary-fg-color;
-    font-size: $font-size-normal;
+    font-size: $font-size-small;
     font-weight: $font-weight-normal;
   }
 }
