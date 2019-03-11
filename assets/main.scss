@@ -1,0 +1,76 @@
+$font-stack: "Roboto", Helvetica, sans-serif;
+
+$font-size-big:64pt;
+$font-size-medium:24pt;
+$font-size-normal:16pt;
+
+
+
+$font-weight-light:100;
+$font-weight-normal:300;
+$font-weight-bold:400;
+
+$bg-color: rgb(255,253,240);
+
+$primary-fg-color: rgb(160,20,40);
+$secondary-fg-color: rgb(80,40,40);
+$tertiary-fg-color: rgb(110,60,65);
+
+
+body {
+  font-family: $font-stack;
+  font-size: $font-size-medium;
+  font-weight: $font-weight-normal;
+  background:$bg-color;
+  color: $primary-fg-color;
+  margin:0px;
+  padding:0px;
+  width: 100%;
+  height:100%;
+  display: block;
+  position: absolute;
+}
+
+/* Personal Info Block */
+#InfoBlock {
+  width: 1080px;
+  margin:0 auto;
+}
+#Personal {
+  max-width:720px;
+  position: absolute;
+  bottom:48px;
+
+  .Name {
+    font-size: $font-size-big;
+    font-weight:$font-weight-normal;
+  }
+  .Activity {
+    color: $secondary-fg-color;
+    padding-top:8px;
+    .greeting {
+      color:rgb(240,190,40)
+    }
+    .age {
+      color:rgb(40,60,240)
+    }
+    .employment {
+      text-decoration: none;
+      color:rgb(10,190,90)
+    }
+    .where {
+      text-decoration: none;
+      color:rgb(210,50,130)
+    }
+  }
+  .Interests {
+    padding-top:8px;
+    color: $tertiary-fg-color;
+  }
+  .Welcome {
+    padding-top:16px;
+    color: $tertiary-fg-color;
+    font-size: $font-size-normal;
+    font-weight: $font-weight-normal;
+  }
+}
