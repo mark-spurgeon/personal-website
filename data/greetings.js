@@ -1,12 +1,12 @@
 const greetings = [
   "Hello",
+  "Goodday",
   "Hi",
   "Bonjour",
+  "Salut",
   "Tchô",
-  "Guten tag",
-  "✌️",
-  "🖐",
-  "🖖",
-  "🤝"
+  "Guten Tag",
+  "Tschüss",
+  "Grüezi"
 ]
 export default greetings

@@ -1,11 +1,11 @@
+$break-small: 600px;
+
 $font-stack: "Roboto", Helvetica, sans-serif;
 
 $font-size-big:64pt;
 $font-size-medium:24pt;
 $font-size-normal:20pt;
 $font-size-small:16pt;
-
-
 
 $font-weight-light:100;
 $font-weight-normal:300;
@@ -41,11 +41,15 @@ body {
 #InfoBlock {
   width: 1080px;
   margin:0 auto;
+  padding: 6px;
 }
 #Personal {
   max-width:720px;
   position: absolute;
-  bottom:48px;
+  bottom:24px;
+  @media screen and (min-width: $break-small) {
+    bottom:96px;
+  }
 
   .Name {
     font-size: $font-size-big;

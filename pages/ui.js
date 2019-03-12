@@ -4,6 +4,14 @@ import website from '../data/website'
 import greetings from '../data/greetings'
 import interests from '../data/interests'
 
+class InterestLink extends React.Component {
+  render() {
+    var {interest} = this.props;
+    return (
+      <a target="_blank" className="interest" href={interest.link}>{interest.name}</a>
+    )
+  }
+}
 
 export class Info extends React.Component {
   constructor(props) {
@@ -16,7 +24,6 @@ export class Info extends React.Component {
     }
     this.akaName = this.akaName.bind(this);
     this.changeGreeting = this.changeGreeting.bind(this);
-    console.log(this.getInterests());
   }
 
   akaName(e, val) {
@@ -41,19 +48,19 @@ export class Info extends React.Component {
 
 
   getGreeting(){
-    var randomIndex = Math.floor((Math.random() * (greetings.length-1)) + 1);
+    var randomIndex = Math.floor((Math.random() * greetings.length));
     var greeting = greetings[randomIndex]
     return greeting;
   }
   getInterests(){
     var ints = [...interests];
-    var index1 = Math.floor((Math.random() * (ints.length-1)) + 1);
+    var index1 = Math.floor((Math.random() * ints.length));
     var int1 = ints[index1]
     ints.splice(index1, 1);
-    var index2 = Math.floor((Math.random() * (ints.length-1)) + 1);
+    var index2 = Math.floor((Math.random() * ints.length));
     var int2 = ints[index2]
     ints.splice(index2, 1);
-    var index3 = Math.floor((Math.random() * (ints.length-1)) + 1);
+    var index3 = Math.floor((Math.random() * ints.length));
     var int3 = ints[index3]
     return [int1, int2, int3];
   }
@@ -82,10 +89,10 @@ export class Info extends React.Component {
             </a>.
           </div>
           <div className="Interests">
-            I am interested in a lot of things, like
-              <a target="_blank" className="interest" href={interests[0].link}> {interests[0].name} </a>,
-              <br/><a target="_blank" className="interest" href={interests[1].link}> {interests[1].name} </a>
-              and<a target="_blank" className="interest" href={interests[2].link}> {interests[2].name} </a>
+            I am interested in a lot of things, link
+              <InterestLink interest={interests[0]} />,
+              <br/><InterestLink interest={interests[1]} />
+              and<InterestLink interest={interests[2]} />
 
             <button className="more-interests" onClick={e=>this.changeInterests(e)}>...and more</button>
           </div>
