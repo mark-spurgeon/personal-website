@@ -1,17 +1,9 @@
 import React from 'react'
 
 import website from '../data/website'
+import message from '../data/message'
 import greetings from '../data/greetings'
 import interests from '../data/interests'
-
-class InterestLink extends React.Component {
-  render() {
-    var {interest} = this.props;
-    return (
-      <a target="_blank" className="interest" href={interest.link}>{interest.name}</a>
-    )
-  }
-}
 
 export class Info extends React.Component {
   constructor(props) {
@@ -19,11 +11,19 @@ export class Info extends React.Component {
     this.state = {
       name:website.personal.name,
       personal:website.personal,
-      greeting:this.getGreeting(),
-      interests:this.getInterests()
+      greeting:'_',
+      interests:this.getInterests(),
     }
     this.akaName = this.akaName.bind(this);
     this.changeGreeting = this.changeGreeting.bind(this);
+    this.changeInterests = this.changeInterests.bind(this);
+  }
+
+  componentDidMount(){
+    this.setState({
+      greeting:this.getGreeting(),
+      interests:this.getInterests()
+    })
   }
 
   akaName(e, val) {
@@ -39,7 +39,15 @@ export class Info extends React.Component {
   }
   changeGreeting(e) {
     e.preventDefault();
-    this.setState({greeting:this.getGreeting()})
+    if (e.type==="mouseenter"){
+      this.setState({
+        greeting:this.getGreeting(),
+      })
+    } else if (e.type==="mouseleave") {
+      this.setState({
+        greeting:this.getGreeting(),
+      })
+    }
   }
   changeInterests(e) {
     e.preventDefault();
@@ -66,12 +74,25 @@ export class Info extends React.Component {
   }
 
   render(){
-    var {
+    const {
       name,
       personal,
       greeting,
       interests
     } = this.state;
+
+    let msg=<div></div>;
+    if (message && (message.content!==''|| message.image!=='')) {
+      msg = <a className="Message" target="_blank" href={message.link} style={{backgroundImage:`url('${message.image}')`}}>{message.content}</a>
+    }
+
+    const ints = interests.map((item, i) => {
+
+      return (
+        <span><a target="_blank" className="interest" href={item.link}>{item.name}</a>, </span>
+      )
+    })
+
     return (
       <div id="InfoBlock">
         <div id="Personal">
@@ -79,26 +100,52 @@ export class Info extends React.Component {
             {name}
           </div>
           <div className="Bio">{personal.bio}</div>
-          <div className="Activity" onMouseOver={e => this.changeGreeting(e)}>
+          <div className="Activity" onMouseEnter={e => this.changeGreeting(e)} onMouseLeave={e => this.changeGreeting(e)}>
             <span class="greeting" >{greeting}!</span> I'm a
             <span class="age"> {personal.age} </span>
              year old  <a className="employment" href={personal.employment.link}>
               {personal.employment.name}
-            </a> working at the <a className="where" href={personal.where.link} target="_blank">
+            </a> working at <a className="where" href={personal.where.link} target="_blank">
               {personal.where.name}
             </a>.
           </div>
           <div className="Interests">
-            I am interested in a lot of things, link
-              <InterestLink interest={interests[0]} />,
-              <br/><InterestLink interest={interests[1]} />
-              and<InterestLink interest={interests[2]} />
-
+            I am interested in a lot of things, like {ints}
             <button className="more-interests" onClick={e=>this.changeInterests(e)}>...and more</button>
           </div>
+          {msg}
           <div className="Welcome">
             Welcome to my wall 😎
           </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+export class Background extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      x:-64,
+      y:-64
+    }
+    this.tileSize = 64;
+  }
+  componentWillReceiveProps(props) {
+    if (props.position) {
+      var {x,y} = props.position;
+      var newX = ( Math.floor(x/this.tileSize)- x/this.tileSize )*this.tileSize - this.tileSize;
+      var newY = ( y/this.tileSize - Math.floor(y/this.tileSize) )*this.tileSize - this.tileSize;
+      this.setState({x:newX, y:newY})
+    }
+  }
+  render(){
+    var {x,y} = this.state;
+    return (
+      <div id="Background">
+        <div id="background-images" style={{top:y, left:x}}>
+
         </div>
       </div>
     )

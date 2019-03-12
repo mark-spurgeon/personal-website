@@ -7,7 +7,8 @@ function calculateAge(birthdayString) { // birthday is a date
 
 const settings = {
   name:"Mark Spurgeon",
-  title:"Marko's Personal Website",
+  title:"Marko's Virtual Wall",
+  lastUpdate:"March 12th 2019",
   personal:{
     name:"Mark Spurgeon",
     aka:"Marko",
@@ -17,9 +18,9 @@ const settings = {
       link:"#"
     },
     where: {
-      name:"University of Geneva",
+      name:"the University of Geneva",
       location:"Switzerland",
-      link:"https://unige.ch"
+      link:"https://www.unige.ch/en/university/presentation/"
     }
   }
 }
